@@ -1,0 +1,45 @@
+{
+    "name": "anh/feed-builder",
+    "type": "library",
+    "description": "Library for building RSS 2.0 and Atom 1.0 feeds",
+    "keywords": [
+        "rss",
+        "rss2",
+        "atom",
+        "feed",
+        "generation"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Andrew Hilobok",
+            "email": "hilobok@gmail.com"
+        }
+    ],
+
+    "require": {
+        "php": ">=5.3.2"
+    },
+
+    "require-dev": {
+        "phpspec/phpspec": "~2.0"
+    },
+
+    "minimum-stability": "stable",
+
+    "autoload": {
+        "psr-4": {
+            "Anh\\FeedBuilder\\": "src"
+        }
+    },
+
+    "config": {
+        "bin-dir": "bin"
+    },
+
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
