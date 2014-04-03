@@ -6,14 +6,25 @@ use Anh\FeedBuilder\AbstractTransformer;
 
 class Transformer extends AbstractTransformer
 {
-    public function postTransform($data)
+    protected function preTransform($data)
     {
-        return array(
-            'rss' => array(
-                'channel' => $data
-            )
-        );
+        return $data;
     }
 
+    protected function postTransform($data)
+    {
+        if (!isset($data['rss']) && !isset($data['channel'])) {
+            $data = array(
+                'channel' => $data
+            );
+        }
 
+        if (!isset($data['rss'])) {
+            $data = array(
+                'rss' => $data
+            );
+        }
+
+        return $data;
+    }
 }
