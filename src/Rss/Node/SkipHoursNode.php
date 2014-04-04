@@ -6,8 +6,17 @@ use Anh\FeedBuilder\AbstractNode;
 
 class SkipHoursNode extends AbstractNode
 {
-    public function isValid()
+    public function getAllowedChildren()
     {
-        return true;
+        return array(
+            'hour'
+        );
+    }
+
+    public function getRequiredChildren()
+    {
+        return array(
+            'hour'
+        );
     }
 }

@@ -31,8 +31,11 @@ class ChannelNode extends AbstractNode
         );
     }
 
-    public function isValid()
+    public function getRequiredChildren()
     {
-        return true;
+        return array(
+            'title',
+            'description'
+        );
     }
 }

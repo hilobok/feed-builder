@@ -16,8 +16,4 @@ use Anh\FeedBuilder\Atom\AbstractDateNode;
  */
 class UpdatedNode extends AbstractDateNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

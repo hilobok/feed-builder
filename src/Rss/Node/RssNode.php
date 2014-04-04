@@ -13,8 +13,17 @@ class RssNode extends AbstractNode
         );
     }
 
-    public function isValid()
+    public function getRequiredChildren()
     {
-        return true;
+        return array(
+            'channel'
+        );
+    }
+
+    public function getDefaultAttributes()
+    {
+        return array(
+            'version' => '2.0'
+        );
     }
 }

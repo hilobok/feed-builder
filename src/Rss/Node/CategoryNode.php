@@ -6,15 +6,10 @@ use Anh\FeedBuilder\AbstractNode;
 
 class CategoryNode extends AbstractNode
 {
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             'domain'
         );
-    }
-
-    public function isValid()
-    {
-        return true;
     }
 }

@@ -30,7 +30,7 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class GeneratorNode extends AbstractNode
 {
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
@@ -40,10 +40,5 @@ class GeneratorNode extends AbstractNode
             'uri',
             'version',
         );
-    }
-
-    public function isValid()
-    {
-        return true;
     }
 }

@@ -19,8 +19,4 @@ use Anh\FeedBuilder\Atom\AbstractPersonNode;
  */
 class AuthorNode extends AbstractPersonNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

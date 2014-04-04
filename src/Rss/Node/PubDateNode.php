@@ -6,8 +6,4 @@ use Anh\FeedBuilder\Rss\AbstractDateNode;
 
 class PubDateNode extends AbstractDateNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

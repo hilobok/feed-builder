@@ -30,12 +30,19 @@ abstract class AbstractPersonNode extends AbstractNode
         );
     }
 
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
             'xml:base',
             'xml:lang',
+        );
+    }
+
+    public function getRequiredChildren()
+    {
+        return array(
+            'name'
         );
     }
 }

@@ -43,7 +43,7 @@ class EntryNode extends AbstractNode
         );
     }
 
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
@@ -52,8 +52,12 @@ class EntryNode extends AbstractNode
         );
     }
 
-    public function isValid()
+    public function getRequiredChildren()
     {
-        return true;
+        return array(
+            'id',
+            'title',
+            'updated',
+        );
     }
 }

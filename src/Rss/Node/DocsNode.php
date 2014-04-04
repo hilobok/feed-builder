@@ -6,8 +6,4 @@ use Anh\FeedBuilder\AbstractNode;
 
 class DocsNode extends AbstractNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

@@ -17,7 +17,7 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class ContentNode extends AbstractNode
 {
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
@@ -34,10 +34,5 @@ class ContentNode extends AbstractNode
         return array(
             'type' => 'text'
         );
-    }
-
-    public function isValid()
-    {
-        return true;
     }
 }

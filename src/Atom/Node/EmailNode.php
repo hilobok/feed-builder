@@ -12,8 +12,4 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class EmailNode extends AbstractNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

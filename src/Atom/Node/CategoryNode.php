@@ -33,7 +33,7 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class CategoryNode extends AbstractNode
 {
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
@@ -46,8 +46,25 @@ class CategoryNode extends AbstractNode
         );
     }
 
-    public function isValid()
+    public function getRequiredAttributes()
     {
-        return true;
+        return array(
+            'term'
+        );
+    }
+
+    public function processValue($data)
+    {
+        $term = null;
+
+        if (is_array($data)) {
+            $term = isset($data[0]) ? $data[0] : null;
+        } else {
+            $term = $data;
+        }
+
+        $this->attributes['term'] = $term;
+
+        return null;
     }
 }

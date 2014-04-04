@@ -38,7 +38,7 @@ class LinkNode extends AbstractNode
         return null;
     }
 
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
@@ -54,8 +54,10 @@ class LinkNode extends AbstractNode
         );
     }
 
-    public function isValid()
+    public function getRequiredAttributes()
     {
-        return true;
+        return array(
+            'href',
+        );
     }
 }

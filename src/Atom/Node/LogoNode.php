@@ -18,17 +18,12 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class LogoNode extends AbstractNode
 {
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
             'xml:base',
             'xml:lang',
         );
-    }
-
-    public function isValid()
-    {
-        return true;
     }
 }

@@ -6,8 +6,39 @@ use Anh\FeedBuilder\AbstractNode;
 
 class ImageNode extends AbstractNode
 {
-    public function isValid()
+    public function getAllowedChildren()
     {
-        return true;
+        return array(
+            'url',
+            'title',
+            'link',
+            'width',
+            'height',
+            'description',
+        );
+    }
+
+    public function getRequiredChildren()
+    {
+        return array(
+            'url',
+            'title',
+            'link',
+        );
+    }
+
+    public function validate()
+    {
+        $errors = parent::validate();
+
+        if ($this->hasChild('width')) {
+            // check if width is numeric
+        }
+
+        if ($this->hasChild('height')) {
+            // check if width is numeric
+        }
+
+        return $errors;
     }
 }

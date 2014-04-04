@@ -6,8 +6,30 @@ use Anh\FeedBuilder\AbstractNode;
 
 class ItemNode extends AbstractNode
 {
-    public function isValid()
+    public function getAllowedChildren()
     {
-        return true;
+        return array(
+            'title',
+            'link',
+            'description',
+            'author',
+            'category',
+            'comments',
+            'enclosure',
+            'guid',
+            'pubDate',
+            'source',
+        );
+    }
+
+    public function validate()
+    {
+        $errors = parent::validate();
+
+        if (!$this->hasChild('title') && !$this->hasChild('description')) {
+            $errors[] = "Element 'item' must contain at least one of 'title' or 'description' elements.";
+        }
+
+        return $errors;
     }
 }

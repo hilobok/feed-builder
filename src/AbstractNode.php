@@ -2,18 +2,18 @@
 
 namespace Anh\FeedBuilder;
 
-abstract class AbstractNode
+abstract class AbstractNode implements NodeInterface
 {
-    protected $value;
+    protected $value = null;
 
-    protected $attributes;
+    protected $attributes = array();
 
-    protected $children;
+    protected $children = array();
 
     public function __construct($data)
     {
         $this->value = $this->processValue($data);
-        $this->attributes = $this->processAttributes($data) + (array) $this->attributes;
+        $this->attributes = $this->processAttributes($data) + $this->attributes;
     }
 
     protected function processValue($data)
@@ -30,10 +30,10 @@ abstract class AbstractNode
         $attributes = array();
 
         if (!is_array($data)) {
-            return $attributes;
+            return $this->getDefaultAttributes();
         }
 
-        foreach ($this->getAvailableAttributes() as $name) {
+        foreach ($this->getAllowedAttributes() as $name) {
             if (array_key_exists($name, $data)) {
                 $attributes[$name] = $data[$name];
             }
@@ -42,17 +42,34 @@ abstract class AbstractNode
         return $attributes + $this->getDefaultAttributes();
     }
 
-    public function getAvailableAttributes()
+    public function getName()
+    {
+        $parts = explode('\\', get_class($this));
+
+        return preg_replace('/Node$/', '', lcfirst(end($parts)));
+    }
+
+    public function getAllowedChildren()
+    {
+        return array();
+    }
+
+    public function getRequiredChildren()
+    {
+        return array();
+    }
+
+    public function getAllowedAttributes()
+    {
+        return array();
+    }
+
+    public function getRequiredAttributes()
     {
         return array();
     }
 
     public function getDefaultAttributes()
-    {
-        return array();
-    }
-
-    public function getAllowedChildren()
     {
         return array();
     }
@@ -67,37 +84,78 @@ abstract class AbstractNode
         return $this->children;
     }
 
-    // TODO XXX shuld not be here?
-    public function build($root)
+    public function getAttributes()
     {
-        $doc = ($root instanceof \DOMDocument) ? $root : $root->ownerDocument;
+        return $this->attributes;
+    }
 
-        $element = $doc->createElement(
-            $this->getNodeName(),
-            $this->value
-        );
+    public function getValue()
+    {
+        return $this->value;
+    }
 
-        foreach ($this->attributes as $name => $value) {
-            $element->setAttribute($name, $value);
-        }
-
-        $root->appendChild($element);
-
-        if ($this->getChildren()) {
-            foreach ($this->getChildren() as $childNode) {
-                $childNode->build($element);
+    public function hasChild($name)
+    {
+        foreach ($this->getChildren() as $child) {
+            if ($child->getName() == $name) {
+                return true;
             }
         }
 
-        return $element;
+        return false;
     }
 
-    protected function getNodeName()
+    public function hasAttribute($attribute)
     {
-        $parts = explode('\\', get_class($this));
-
-        return preg_replace('/Node$/', '', lcfirst(end($parts)));
+        return isset($this->attributes[$attribute]);
     }
 
-    abstract public function isValid();
+    public function childCount($name)
+    {
+        $count = 0;
+
+        foreach ($this->getChildren() as $child) {
+            if ($child->getName() == $name) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    public function validate()
+    {
+        $errors = array_merge(
+            $this->checkRequiredChildren(),
+            $this->checkRequiredAttributes()
+        );
+
+        return $errors ?: null;
+    }
+
+    protected function checkRequiredChildren()
+    {
+        $errors = array();
+
+        foreach ($this->getRequiredChildren() as $child) {
+            if (!$this->hasChild($child)) {
+                $errors[] = sprintf("Element '%s' must contain '%s' element.", $this->getName(), $child);
+            }
+        }
+
+        return $errors;
+    }
+
+    protected function checkRequiredAttributes()
+    {
+        $errors = array();
+
+        foreach ($this->getRequiredAttributes() as $attribute) {
+            if (!$this->hasAttribute($attribute)) {
+                $errors[] = sprintf("Element '%s' must contain '%s' attribute.", $this->getName(), $attribute);
+            }
+        }
+
+        return $errors;
+    }
 }

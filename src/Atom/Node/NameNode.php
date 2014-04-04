@@ -11,8 +11,4 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class NameNode extends AbstractNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

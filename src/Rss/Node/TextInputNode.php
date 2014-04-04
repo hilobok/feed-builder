@@ -6,8 +6,23 @@ use Anh\FeedBuilder\AbstractNode;
 
 class TextInputNode extends AbstractNode
 {
-    public function isValid()
+    public function getAllowedChildren()
     {
-        return true;
+        return array(
+            'title',
+            'description',
+            'name',
+            'link'
+        );
+    }
+
+    public function getRequiredChildren()
+    {
+        return array(
+            'title',
+            'description',
+            'name',
+            'link'
+        );
     }
 }

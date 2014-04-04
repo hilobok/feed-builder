@@ -19,8 +19,4 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class RightsNode extends AbstractNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

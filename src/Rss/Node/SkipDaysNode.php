@@ -6,8 +6,17 @@ use Anh\FeedBuilder\AbstractNode;
 
 class SkipDaysNode extends AbstractNode
 {
-    public function isValid()
+    public function getAllowedChildren()
     {
-        return true;
+        return array(
+            'day'
+        );
+    }
+
+    public function getRequiredChildren()
+    {
+        return array(
+            'day'
+        );
     }
 }

@@ -35,7 +35,7 @@ abstract class AbstractDateNode extends AbstractNode
         }
     }
 
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes

@@ -50,7 +50,7 @@ class FeedNode extends AbstractNode
         );
     }
 
-    public function getAvailableAttributes()
+    public function getAllowedAttributes()
     {
         return array(
             // atomCommonAttributes
@@ -68,8 +68,10 @@ class FeedNode extends AbstractNode
         );
     }
 
-    public function isValid()
+    public function getRequiredChildren()
     {
-        return true;
+        return array(
+            'id',
+        );
     }
 }

@@ -16,8 +16,4 @@ use Anh\FeedBuilder\AbstractNode;
  */
 class SummaryNode extends AbstractNode
 {
-    public function isValid()
-    {
-        return true;
-    }
 }

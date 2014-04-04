@@ -9,14 +9,17 @@ abstract class AbstractTreeBuilder
     abstract function __construct($transformer = null);
     abstract public function getNodeClassName($nodeName);
 
-    public function build($data)
+    public function build(array $data)
     {
-print_r($data);
         $data = $this->transformer->transform($data);
-print_r($data);
+        $nodes = array();
 
         foreach ($data as $name => $value) {
-            $nodes[] = $this->createNode($name, $value);
+            $node = $this->createNode($name, $value);
+
+            if ($node) {
+                $nodes[] = $node;
+            }
         }
 
         return $nodes;
@@ -36,9 +39,10 @@ print_r($data);
                     $this->normalizeNodeName($name),
                     $node->getAllowedChildren()
                 )) {
-                    $node->addChild(
-                        $this->createNode($name, $value)
-                    );
+                    $child = $this->createNode($name, $value);
+                    if ($child) {
+                        $node->addChild($child);
+                    }
                 }
             }
 
