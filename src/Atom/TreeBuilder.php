@@ -3,7 +3,6 @@
 namespace Anh\FeedBuilder\Atom;
 
 use Anh\FeedBuilder\AbstractTreeBuilder;
-use Anh\FeedBuilder\Atom\Transformer;
 
 class TreeBuilder extends AbstractTreeBuilder
 {

@@ -3,7 +3,6 @@
 namespace Anh\FeedBuilder\Rss;
 
 use Anh\FeedBuilder\AbstractTreeBuilder;
-use Anh\FeedBuilder\Rss\Transformer;
 
 class TreeBuilder extends AbstractTreeBuilder
 {

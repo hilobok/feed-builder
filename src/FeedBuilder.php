@@ -4,7 +4,6 @@ namespace Anh\FeedBuilder;
 
 use Anh\FeedBuilder\Rss\TreeBuilder as RssTreeBuilder;
 use Anh\FeedBuilder\Atom\TreeBuilder as AtomTreeBuilder;
-use Anh\FeedBuilder\NodeInterface;
 use DOMDocument;
 
 class FeedBuilder

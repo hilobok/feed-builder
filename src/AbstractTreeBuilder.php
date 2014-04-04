@@ -6,7 +6,7 @@ abstract class AbstractTreeBuilder
 {
     protected $transformer;
 
-    abstract function __construct($transformer = null);
+    abstract public function __construct($transformer = null);
     abstract public function getNodeClassName($nodeName);
 
     public function build(array $data)
