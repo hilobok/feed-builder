@@ -1,7 +1,7 @@
 {
     "name": "anh/feed-builder",
     "type": "library",
-    "description": "Library for building RSS 2.0 and Atom 1.0 feeds",
+    "description": "Library for building and validating RSS 2.0 and Atom 1.0 feeds",
     "keywords": [
         "rss",
         "rss2",
