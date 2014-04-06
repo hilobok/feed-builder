@@ -2,7 +2,7 @@
 
 namespace Anh\FeedBuilder\Atom\Node;
 
-use Anh\FeedBuilder\AbstractNode;
+use Anh\FeedBuilder\Atom\AbstractTextNode;
 
 /**
  * The "atom:subtitle" element is a Text construct that conveys a human-
@@ -10,6 +10,6 @@ use Anh\FeedBuilder\AbstractNode;
  *
  * atomSubtitle = element atom:subtitle { atomTextConstruct }
  */
-class SubtitleNode extends AbstractNode
+class SubtitleNode extends AbstractTextNode
 {
 }

@@ -2,7 +2,7 @@
 
 namespace Anh\FeedBuilder\Atom\Node;
 
-use Anh\FeedBuilder\AbstractNode;
+use Anh\FeedBuilder\Atom\AbstractTextNode;
 
 /**
  * The "atom:rights" element is a Text construct that conveys
@@ -17,6 +17,6 @@ use Anh\FeedBuilder\AbstractNode;
  * then the atom:rights element of the containing atom:feed element, if
  * present, is considered to apply to the entry.
  */
-class RightsNode extends AbstractNode
+class RightsNode extends AbstractTextNode
 {
 }

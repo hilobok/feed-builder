@@ -2,7 +2,7 @@
 
 namespace Anh\FeedBuilder\Atom\Node;
 
-use Anh\FeedBuilder\AbstractNode;
+use Anh\FeedBuilder\Atom\AbstractTextNode;
 
 /**
  * The "atom:summary" element is a Text construct that conveys a short
@@ -14,6 +14,6 @@ use Anh\FeedBuilder\AbstractNode;
  * atom:title or atom:content because Atom Processors might assume there
  * is a useful summary when there is none.
  */
-class SummaryNode extends AbstractNode
+class SummaryNode extends AbstractTextNode
 {
 }

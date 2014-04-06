@@ -2,7 +2,7 @@
 
 namespace Anh\FeedBuilder\Atom\Node;
 
-use Anh\FeedBuilder\AbstractNode;
+use Anh\FeedBuilder\Atom\AbstractTextNode;
 
 /**
  * The "atom:content" element either contains or links to the content of
@@ -15,24 +15,6 @@ use Anh\FeedBuilder\AbstractNode;
  *      (text)*
  *   }
  */
-class ContentNode extends AbstractNode
+class ContentNode extends AbstractTextNode
 {
-    public function getAllowedAttributes()
-    {
-        return array(
-            // atomCommonAttributes
-            'xml:base',
-            'xml:lang',
-
-            'type',
-            'src',
-        );
-    }
-
-    public function getDefaultAttributes()
-    {
-        return array(
-            'type' => 'text'
-        );
-    }
 }
