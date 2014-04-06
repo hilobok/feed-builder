@@ -47,6 +47,14 @@ class FeedBuilder
 
     public function setType($type)
     {
+        $availableTypes = array_keys($this->builders);
+
+        if (!in_array($type, $availableTypes)) {
+            throw new \InvalidArgumentException(
+                sprintf("Invalid type '%s'. Available types are '%s'.", $type, implode(', ', $availableTypes))
+            );
+        }
+
         $this->type = $type;
 
         return $this;
