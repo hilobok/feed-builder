@@ -5,6 +5,7 @@ namespace Anh\FeedBuilder;
 use Anh\FeedBuilder\Rss\TreeBuilder as RssTreeBuilder;
 use Anh\FeedBuilder\Atom\TreeBuilder as AtomTreeBuilder;
 use DOMDocument;
+use DOMNode;
 
 class FeedBuilder
 {
@@ -67,11 +68,12 @@ class FeedBuilder
         return $this;
     }
 
-    public function build()
+    public function build($format = false)
     {
         $nodes = $this->getBuilder($this->type)->build($this->data);
 
         $dom = new DOMDocument('1.0', $this->encoding);
+        $dom->formatOutput = $format;
 
         foreach ($nodes as $node) {
             $dom->appendChild($this->buildNode($node, $dom));
@@ -80,7 +82,7 @@ class FeedBuilder
         return $dom->saveXML();
     }
 
-    protected function buildNode(NodeInterface $node, $root)
+    protected function buildNode(NodeInterface $node, DOMNode $root)
     {
         $doc = ($root instanceof \DOMDocument) ? $root : $root->ownerDocument;
 
