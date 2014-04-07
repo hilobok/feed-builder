@@ -61,6 +61,16 @@ class FeedBuilder
         return $this;
     }
 
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function getMimeType()
+    {
+        return sprintf('application/%s+xml', $this->getType());
+    }
+
     public function fromArray(array $data)
     {
         $this->data = $data;
@@ -68,9 +78,21 @@ class FeedBuilder
         return $this;
     }
 
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    public function render($format = false)
+    {
+        $dom = $this->build($format);
+
+        return $dom->saveXML();
+    }
+
     public function build($format = false)
     {
-        $nodes = $this->getBuilder($this->type)->build($this->data);
+        $nodes = $this->getBuilder($this->getType())->build($this->getData());
 
         $dom = new DOMDocument('1.0', $this->encoding);
         $dom->formatOutput = $format;
@@ -79,7 +101,7 @@ class FeedBuilder
             $dom->appendChild($this->buildNode($node, $dom));
         }
 
-        return $dom->saveXML();
+        return $dom;
     }
 
     protected function buildNode(NodeInterface $node, DOMNode $root)
@@ -106,7 +128,7 @@ class FeedBuilder
 
     public function validate()
     {
-        $nodes = $this->getBuilder($this->type)->build($this->data);
+        $nodes = $this->getBuilder($this->getType())->build($this->getData());
 
         $errors = array();
 
@@ -130,6 +152,6 @@ class FeedBuilder
 
     public function __toString()
     {
-        return $this->build();
+        return $this->render();
     }
 }
