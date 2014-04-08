@@ -19,4 +19,20 @@ use Anh\FeedBuilder\Atom\AbstractPersonNode;
  */
 class AuthorNode extends AbstractPersonNode
 {
+    public function processValue($data)
+    {
+        $author = null;
+
+        if (is_array($data)) {
+            $author = isset($data[0]) ? $data[0] : null;
+        } else {
+            $author = $data;
+        }
+
+        if ($author) {
+            $this->addChild(new NameNode($author));
+        }
+
+        return null;
+    }
 }
