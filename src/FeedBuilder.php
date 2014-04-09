@@ -110,7 +110,7 @@ class FeedBuilder
 
         $element = $doc->createElement(
             $node->getName(),
-            htmlentities($node->getValue())
+            htmlentities($node->getValue(), ENT_XML1)
         );
 
         foreach ($node->getAttributes() as $name => $value) {
